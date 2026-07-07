@@ -43,7 +43,7 @@ Module 2.5 was confirmed three ways with calipers (pinion 40 mm, ring envelope 1
 
 ## Print settings
 
-PETG. Print exactly as the STL sits, flat face on the bed. **No supports.** 4 to 6 walls, 40 percent infill. PLA will not survive Florida heat plus gear load. The design was machine audited: every downward face above the bed is under 45 degrees and nothing intrudes into the ring the pinion sweeps.
+ASA, PETG or similar strength material. Print exactly as the STL sits, flat face on the bed. **No supports.** 4 to 6 walls, 40 percent infill. PLA will not survive outdoor heat plus gear load.
 
 ## Install
 
