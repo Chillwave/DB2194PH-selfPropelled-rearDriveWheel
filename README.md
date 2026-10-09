@@ -1,6 +1,6 @@
 # printable mower drive wheel
 
-3D printed replacement for the 8 inch rear drive wheel on a PowerSmart DB2194PH self propelled mower. OEM parts 203050397A right and 203050398A left. The stock wheel strips its hub teeth and the mower stops driving. This one prints in PETG with no supports and the gear was reverse engineered with calipers and test prints on the actual machine.
+3D printed replacement for the 8 inch rear drive wheel on a PowerSmart DB2194PH self propelled mower. OEM parts 203050397A right and 203050398A left. The stock wheel strips its hub teeth and the mower stops driving. This one prints in PETG with no supports and every dimension was measured off the real machine with calipers and test prints.
 
 ## The problem
 
@@ -10,50 +10,58 @@ Stripped hub on the OEM wheel. Gear and tread were fine, the mower just stopped 
 
 ## The wheel
 
-Full height vertical gear teeth, flat base, knurled tread. Prints face down with zero supports. Red gear in the renders is the mower pinion shown for clearance:
+Full height vertical gear teeth, flat base, knurled tread, crush rib bearing pocket for a thermal press fit. Prints face down with zero supports. Red gear is the mower pinion shown for clearance:
 
-![full wheel with pinion shown](v6_iso.png)
+![wheel with pinion shown](wheel_iso.png)
 
-Skinny half width version for a cheap first drive test:
+![wheel cutaway](wheel_cutaway.png)
 
-![skinny wheel](v6_skinny_tread.png)
+Test ring meshing the steel pinion on the mower:
 
-## Specs
+![test ring on the mower](test_print_meshing.jpg)
+
+## Specs, all measured
 
 | | |
 |---|---|
-| Ring gear | 52 teeth, internal, full height |
-| Pinion on mower | 14 teeth, steel |
-| Module | 2.5 |
-| Ring outer | 136 mm |
-| Center distance | 47.5 mm |
-| Full wheel | 203 x 50 mm, knurled |
-| Skinny wheel | 203 x 26 mm, knurled |
-| Bearing | 30 mm OD, reuse the OEM one |
-| Nut recess | 26 mm socket access from the back |
-
-Module 2.5 was confirmed three ways with calipers (pinion 40 mm, ring envelope 140 mm, bolt to pinion gap 22 mm) and then a printed test ring meshed and rolled on the mower.
+| Ring gear | 52 teeth, internal, full height, module 2.5 |
+| Pinion on mower | 14 teeth steel, 40 mm OD, reaches 25 mm off the housing |
+| Ring outer | 136 mm, center distance 47.5 mm |
+| Wheel | 203 x 50 mm, knurled, 217 with the brim ring |
+| Bearing | OEM flanged, 13 bore x 30 body x 12 wide, 32 flange, 29 long with tube |
+| Stud | 13 mm smooth for 40 mm, then 8 mm threads |
+| Spacer | 11 mm, fills stud smooth 40 minus bearing tube 29 |
 
 ## Print order
 
 | File | What | Cost |
 |---|---|---|
-| wheel_v6_skinny.stl | Half width working wheel. Drive the mower on it. | ~130 g |
-| wheel_v6.stl | Full width final wheel. | ~280 g |
+| test_slice_v2.stl | Thin gear ring, verify mesh on your mower first | ~15 g |
+| wheel_v8.stl | The wheel, brim ring built in | ~290 g |
+| spacer_11mm.stl | The spacer, 100 percent infill | ~5 g |
 
 ## Print settings
 
-ASA, PETG or similar strength material. Print exactly as the STL sits, flat face on the bed. **No supports.** 4 to 6 walls, 40 percent infill. PLA will not survive outdoor heat plus gear load.
+PETG, ASA or similar. Print exactly as the STL sits, flat face on the bed. **No supports.**
+
+**Brims are mandatory.** PETG curls at the rim of a 200 mm part and the lift wrecks the gear dimensions. The STL ships with a fat 7 mm snap off brim ring built in (1 mm tall, 5 layers, fused to the wheel edge by a quarter millimeter). Score the seam with a utility knife, peel it off, sand the edge. Turn the slicer's own brim and skirt OFF so they do not fight it.
+
+5 to 6 walls, 40 percent infill. Clean bed, hot first layer, no fan for the first 5 layers, no drafts. PLA will not survive outdoor heat plus gear load.
 
 ## Install
 
-Drop the OEM bearing into the pocket from the gear side. Wheel onto the axle so the gear meshes the pinion. Washer and flange nut go on through the 26 mm recess in the back with a socket. Snug the nut to the bolt shoulder, do not crush it into the wheel. One way roll comes from the ratchet on the axle, not the wheel.
+1. Heat the hub with a hair dryer until hot to the touch. Press the bearing in flange first until flush. Cooling shrink plus the crush ribs lock it. Reheat to remove
+2. Slide the 11 mm spacer onto the stud against the housing
+3. Wheel onto the stud, gear side toward the mower
+4. Nylock nut down the 26 mm tunnel with a deep socket, snug against the bearing tube end. The nut clamps the tube, never the wheel
+5. Yank test for play, spin test for free, then mow
 
 ## Tuning
 
-Everything is a variable at the top of drive_wheel_v6.scad:
+Everything is a variable at the top of drive_wheel_v8.scad:
 
-* gear_backlash 0.40. Raise to 0.5 or 0.6 if the mesh binds or sounds gravelly under load
-* pinion_reach 18. How deep the pinion engages from the top face. The hub gussets auto duck under it
-* tread_style knurl, chevron, ribbed or slick
-* wheel_width 50 or 26 or whatever you want
+* brim true or false, brim_w 7, brim_h 1.0. Widen it if your bed is bigger than 220
+* rib_bite 0.30. Crush rib grip. Raise if your printer runs loose, lower if the bearing will not seat even hot
+* gear_backlash 0.40. Raise to 0.5 or 0.6 if the mesh binds or sounds gravelly
+* pinion_reach 24. Measured on this mower, remeasure on yours
+* tread_style knurl or slick
